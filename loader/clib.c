@@ -36,22 +36,19 @@
 
 // funnily enough, MSVC still tries to replace this
 // with memset hence the use of assembly..
-void *Memset (void *ptr, int value, uint32_t num) {
+__forceinline void *Memset (void *ptr, int value, uint32_t num) {
 
-    #ifdef _MSC_VER
-    __stosb(ptr, value, num);
-    #else
+
     unsigned char *p = (unsigned char*)ptr;
     
     while(num--) {
       *p = (unsigned char)value;
       p++;
     }
-    #endif
     return ptr;
 }
 
-void *Memcpy (void *destination, const void *source, uint32_t num) {
+__forceinline void *Memcpy (void *destination, const void *source, uint32_t num) {
     unsigned char *out = (unsigned char*)destination;
     unsigned char *in  = (unsigned char*)source;
     
@@ -62,7 +59,7 @@ void *Memcpy (void *destination, const void *source, uint32_t num) {
     return destination;
 }
 
-int Memcmp(const void *ptr1, const void *ptr2, uint32_t num) {
+__forceinline int Memcmp(const void *ptr1, const void *ptr2, uint32_t num) {
     register const unsigned char *s1 = (const unsigned char*)ptr1;
     register const unsigned char *s2 = (const unsigned char*)ptr2;
 
@@ -73,7 +70,7 @@ int Memcmp(const void *ptr1, const void *ptr2, uint32_t num) {
     return 0;
 }
 
-int compare(const char *s1, const char *s2) {
+__forceinline int compare(const char *s1, const char *s2) {
     while(*s1 && *s2) {
       if(*s1 != *s2) {
         return 0;
@@ -83,7 +80,7 @@ int compare(const char *s1, const char *s2) {
     return *s2 == 0;
 }
 
-const char* _strstr(const char *s1, const char *s2) {
+__forceinline const char* _strstr(const char *s1, const char *s2) {
     while (*s1) {
       if((*s1 == *s2) && compare(s1, s2)) return s1;
       s1++;
@@ -91,7 +88,7 @@ const char* _strstr(const char *s1, const char *s2) {
     return NULL;
 }
 
-int _strcmp(const char *str1, const char *str2) {
+__forceinline int _strcmp(const char *str1, const char *str2) {
     while (*str1 && *str2) {
       if(*str1 != *str2) break;
       str1++; str2++;
@@ -110,7 +107,7 @@ int _strcmp(const char *str1, const char *str2) {
 
 */
 
-int stricmp(const char *str1, const char *str2) {
+__forceinline int stricmp(const char *str1, const char *str2) {
     while (*str1 && *str2) {
       if ((*str1 | 0x20) != (*str2 | 0x20)) break;
       str1++; str2++;

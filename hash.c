@@ -30,6 +30,7 @@
 */
 
 #include "hash.h"
+#include "loader/clib.c"
 
 // SPECK-64/128
 static uint64_t speck(void *mk, uint64_t p) {

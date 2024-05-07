@@ -30,6 +30,7 @@
 */
 
 #include "loader.h"
+#include "clib.c"   
 
 DWORD MainProc(PDONUT_INSTANCE inst);
 

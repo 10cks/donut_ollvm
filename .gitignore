@@ -60,6 +60,8 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+*.exe
+*.res
 
 # Chutzpah Test files
 _Chutzpah*
@@ -250,3 +252,4 @@ AkavacheSqliteLinkerOverride.cs
 NuGetBuild
 WiX.Toolset.DummyFile.txt
 GitHubVS.sln.DotSettings
+

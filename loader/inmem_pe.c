@@ -373,7 +373,7 @@ VOID RunPE(PDONUT_INSTANCE inst, PDONUT_MODULE mod) {
 
     shcp = inst->api.VirtualAlloc(NULL, ntc.FileHeader.NumberOfSections * sizeof(IMAGE_SECTION_HEADER), 
       MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-
+    
     Memcpy(shcp, sh, ntc.FileHeader.NumberOfSections * sizeof(IMAGE_SECTION_HEADER));
 
     if(inst->headers == 1)

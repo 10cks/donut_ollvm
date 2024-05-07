@@ -94,9 +94,9 @@ static HRESULT WINAPI Host_QueryInterface(IHost *iface, REFIID riid, void **ppv)
     if(ppv == NULL) return E_POINTER;
     
     // we implement the following interfaces
-    if(IsEqualIID(&iface->inst->xIID_IUnknown,  riid)  ||
-       IsEqualIID(&iface->inst->xIID_IDispatch, riid) ||
-       IsEqualIID(&iface->inst->xIID_IHost,     riid)) 
+    if(InlineIsEqualGUID(&iface->inst->xIID_IUnknown,  riid)  ||
+       InlineIsEqualGUID(&iface->inst->xIID_IDispatch, riid) ||
+       InlineIsEqualGUID(&iface->inst->xIID_IHost,     riid)) 
     {
         *ppv = iface;
         return S_OK;

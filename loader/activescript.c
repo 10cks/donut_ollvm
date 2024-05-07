@@ -98,14 +98,14 @@ static STDMETHODIMP ActiveScript_QueryInterface(IActiveScriptSite *this, REFIID 
     if(ppv == NULL) return E_POINTER;
     
     // we implement the following interfaces
-    if(IsEqualIID(&mas->inst->xIID_IUnknown,                riid) || 
-       IsEqualIID(&mas->inst->xIID_IActiveScriptSite,       riid))
+    if(InlineIsEqualGUID(&mas->inst->xIID_IUnknown,                riid) || 
+       InlineIsEqualGUID(&mas->inst->xIID_IActiveScriptSite,       riid))
     {
       DPRINT("Returning interface to IActiveScriptSite");
       *ppv = (LPVOID)this;
       ActiveScript_AddRef(this);
       return S_OK;
-    } else if(IsEqualIID(&mas->inst->xIID_IActiveScriptSiteWindow, riid)) {
+    } else if(InlineIsEqualGUID(&mas->inst->xIID_IActiveScriptSiteWindow, riid)) {
       DPRINT("Returning interface to IActiveScriptSiteWindow");
       *ppv = (LPVOID)&mas->siteWnd;
       ActiveScriptSiteWindow_AddRef(&mas->siteWnd);
@@ -258,8 +258,8 @@ static STDMETHODIMP ActiveScriptSiteWindow_QueryInterface(IActiveScriptSiteWindo
     if(ppv == NULL) return E_POINTER;
 
     // we implement the following interfaces
-    if(IsEqualIID(&this->inst->xIID_IUnknown,                riid) || 
-       IsEqualIID(&this->inst->xIID_IActiveScriptSiteWindow, riid)) 
+    if(InlineIsEqualGUID(&this->inst->xIID_IUnknown,                riid) || 
+       InlineIsEqualGUID(&this->inst->xIID_IActiveScriptSiteWindow, riid)) 
     {
       DPRINT("Returning this interface");
       *ppv = (LPVOID)this;
